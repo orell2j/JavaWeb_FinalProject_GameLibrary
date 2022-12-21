@@ -1,6 +1,5 @@
 package com.example.javaweb_finalproject_gamelibrary.response;
 
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
