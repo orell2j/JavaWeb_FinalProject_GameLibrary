@@ -1,6 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.request;
 
-import lombok.NonNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,16 +9,16 @@ import lombok.Setter;
 
 public class GameRequest {
 
-    @NonNull
-    private long Id;
+    @NotBlank
+    private long id;
 
-    @NonNull
+    @NotBlank
     private String Title;
 
-    @NonNull
+    @NotBlank
     private String Genre;
 
-    @NonNull
+    @NotBlank
     private String Description;
 
 

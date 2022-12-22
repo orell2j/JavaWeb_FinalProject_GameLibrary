@@ -19,7 +19,7 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     @Column(name = "Title", nullable = false)
     private String Title;
@@ -34,7 +34,7 @@ public class Game {
 
     public Game(GameRequest gameRequest){
 
-        Id = gameRequest.getId();
+        id = gameRequest.getId();
 
         Title = gameRequest.getTitle();
 
