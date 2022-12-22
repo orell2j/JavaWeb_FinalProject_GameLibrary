@@ -14,12 +14,12 @@ public class GameSevice {
     @Autowired
     GameRepository gameRepository;
 
-    public List<Game> getAllGames(long id){
+    public List<Game> getAllGames(long GameId){
         return (List<Game>) gameRepository.findAll();
     }
 
-    public Game getGameById(long id){
-        return gameRepository.findById(id).orElse(null);
+    public Game getGameById(long GameId){
+        return gameRepository.findById(GameId).orElse(null);
     }
 
     public Game addGame(GameRequest gameRequest){
@@ -27,17 +27,17 @@ public class GameSevice {
         return gameRepository.save(game);
     }
 
-    public Game updateGame(long id, GameRequest gameRequest){
-        gameRepository.findById(id).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
+    public Game updateGame(long GameId, GameRequest gameRequest){
+        gameRepository.findById(GameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
         Game gameToUpdate = new Game(gameRequest);
-        gameToUpdate.setId(id);
+        gameToUpdate.setGameId(GameId);
 
         return gameRepository.save(gameToUpdate);
     }
 
-    public void deleteGame(long id){
-        if(gameRepository.existsById(id)){
-            gameRepository.deleteById(id);
+    public void deleteGame(long GameId){
+        if(gameRepository.existsById(GameId)){
+            gameRepository.deleteById(GameId);
         }
         else{
             throw new ResourceNotFoundException("GAME NOT FOUND");

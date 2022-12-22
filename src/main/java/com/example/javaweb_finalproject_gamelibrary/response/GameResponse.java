@@ -13,20 +13,20 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 public class GameResponse {
 
-    private long id;
+    private long GameId;
 
     private String Title;
 
-    private String Genre;
+    private String Publisher;
 
     private String Description;
 
     //entity
     public GameResponse (Game game){
 
-        id = game.getId();
+        GameId = game.getGameId();
         Title = game.getTitle();
-        Genre = game.getGenre();
+        Publisher = game.getPublisher();
         Description = game.getDescription();
     }
 }

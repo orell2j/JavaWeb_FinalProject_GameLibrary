@@ -10,13 +10,13 @@ import lombok.Setter;
 public class GameRequest {
 
     @NotBlank
-    private long id;
+    private long GameId;
 
     @NotBlank
     private String Title;
 
     @NotBlank
-    private String Genre;
+    private String Publisher;
 
     @NotBlank
     private String Description;

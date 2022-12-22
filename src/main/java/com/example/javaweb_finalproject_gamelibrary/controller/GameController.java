@@ -24,8 +24,8 @@ public class GameController {
     GameSevice gameService;
 
     @GetMapping
-    public List<GameResponse> getAllGames(@PathVariable long id){
-        List<Game> games = gameService.getAllGames(id);
+    public List<GameResponse> getAllGames(@PathVariable long GameId){
+        List<Game> games = gameService.getAllGames(GameId);
         List<GameResponse> gameResponses = new ArrayList<>();
         games.forEach(game -> {
             GameResponse gameResponse = new GameResponse(game);
@@ -34,9 +34,9 @@ public class GameController {
         return gameResponses;
     }
 
-    @GetMapping("/{id}")
-    public Game getGameById(@PathVariable long id){
-        return gameService.getGameById(id);
+    @GetMapping("/{GameId}")
+    public Game getGameById(@PathVariable long GameId){
+        return gameService.getGameById(GameId);
     }
 
     @PostMapping()
@@ -46,15 +46,15 @@ public class GameController {
         return new GameResponse(savedGame);
     }
 
-    @PutMapping("/{id}")
-    public GameResponse updateGame(@PathVariable long id, @Valid @RequestBody GameRequest gameRequest){
-        Game updateGame = gameService.updateGame(id, gameRequest);
+    @PutMapping("/{GameId}")
+    public GameResponse updateGame(@PathVariable long GameId, @Valid @RequestBody GameRequest gameRequest){
+        Game updateGame = gameService.updateGame(GameId, gameRequest);
         return new GameResponse(updateGame);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteGame (@PathVariable long id){
-        gameService.deleteGame(id);
+    @DeleteMapping("/{GameId}")
+    public void deleteGame (@PathVariable long GameId){
+        gameService.deleteGame(GameId);
     }
 
 }

@@ -19,13 +19,13 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long GameId;
 
     @Column(name = "Title", nullable = false)
     private String Title;
 
-    @Column(name = "Genre", nullable = false)
-    private String Genre;
+    @Column(name = "Publisher", nullable = false)
+    private String Publisher;
 
     @Column(name = "Description", nullable = true)
     private String Description;
@@ -34,11 +34,11 @@ public class Game {
 
     public Game(GameRequest gameRequest){
 
-        id = gameRequest.getId();
+        GameId = gameRequest.getGameId();
 
         Title = gameRequest.getTitle();
 
-        Genre = gameRequest.getGenre();
+        Publisher = gameRequest.getPublisher();
 
         Description = gameRequest.getDescription();
     }
