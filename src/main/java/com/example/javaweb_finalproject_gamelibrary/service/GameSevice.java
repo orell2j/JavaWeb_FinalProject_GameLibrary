@@ -1,9 +1,12 @@
 package com.example.javaweb_finalproject_gamelibrary.service;
 
 import com.example.javaweb_finalproject_gamelibrary.entity.Game;
+import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 import com.example.javaweb_finalproject_gamelibrary.exception.ResourceNotFoundException;
 import com.example.javaweb_finalproject_gamelibrary.repository.GameRepository;
+import com.example.javaweb_finalproject_gamelibrary.repository.ReviewRepository;
 import com.example.javaweb_finalproject_gamelibrary.request.GameRequest;
+import com.example.javaweb_finalproject_gamelibrary.request.ReviewRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +17,28 @@ public class GameSevice {
     @Autowired
     GameRepository gameRepository;
 
+    @Autowired
+    ReviewRepository reviewRepository;
+
+    public Review addReview(long id, ReviewRequest reviewRequest){
+        Game game = gameRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Game id not found"));
+        Review reviewToBeSaved = new Review(reviewRequest);
+        reviewToBeSaved.setGame(game);
+        return reviewRepository.save(reviewToBeSaved);
+    }
+
+    public List<Review> getAllReviews(long id){
+        return reviewRepository.findAllByGameId(id);
+    }
+
     public List<Game> getAllGames(long GameId){
+
         return (List<Game>) gameRepository.findAll();
+
     }
 
     public Game getGameById(long GameId){
+
         return gameRepository.findById(GameId).orElse(null);
     }
 

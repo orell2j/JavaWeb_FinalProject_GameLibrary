@@ -1,9 +1,13 @@
 package com.example.javaweb_finalproject_gamelibrary.controller;
 
 import com.example.javaweb_finalproject_gamelibrary.entity.Game;
+import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 import com.example.javaweb_finalproject_gamelibrary.request.GameRequest;
+import com.example.javaweb_finalproject_gamelibrary.request.ReviewRequest;
 import com.example.javaweb_finalproject_gamelibrary.response.GameResponse;
+import com.example.javaweb_finalproject_gamelibrary.response.ReviewResponse;
 import com.example.javaweb_finalproject_gamelibrary.service.GameSevice;
+import com.example.javaweb_finalproject_gamelibrary.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +26,24 @@ public class GameController {
 
     @Autowired
     GameSevice gameService;
+
+    @PostMapping("/{GameId}/Reviews")
+    public ReviewResponse addReview(@PathVariable long GameId,
+                                    @Valid @RequestBody ReviewRequest reviewRequest){
+
+        return new ReviewResponse(gameService.addReview(GameId, reviewRequest));
+
+    }
+
+    @GetMapping("/{GameId}/Reviews")
+    public List<ReviewResponse> getAllReviews(@PathVariable long GameId){
+        List<Review> reviews = gameService.getAllReviews(GameId);
+        List<ReviewResponse> reviewResponses = new ArrayList<>();
+        for (int i=0; i < reviews.size(); i++){
+            reviewResponses.add(new ReviewResponse(reviews.get(i)));
+        }
+        return reviewResponses;
+    }
 
     @GetMapping
     public List<GameResponse> getAllGames(@PathVariable long GameId){
