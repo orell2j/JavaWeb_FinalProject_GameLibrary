@@ -1,18 +1,22 @@
 package com.example.javaweb_finalproject_gamelibrary.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Table(name = "Users")
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "UserName", nullable = false)
     private String username;
+
+    @Column(name = "Email", nullable = false)
     private String email;
+
+    @Column(name = "Password", nullable = false)
     private String password;
 
     public User() {}
