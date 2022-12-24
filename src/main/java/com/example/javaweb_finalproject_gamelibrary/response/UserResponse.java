@@ -19,6 +19,6 @@ public class UserResponse {
     public UserResponse(User user){
         id = user.getId();
         username = user.getUsername();
-        email = user.getEmail();
+        email = user.getUserEmail();
     }
 }

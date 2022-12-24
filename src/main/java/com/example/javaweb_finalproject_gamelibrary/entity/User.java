@@ -1,49 +1,33 @@
 package com.example.javaweb_finalproject_gamelibrary.entity;
 
-import com.example.javaweb_finalproject_gamelibrary.request.UserRequest;
-import jakarta.persistence.Column;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
+@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @NotBlank
-    @Size(max = 40)
-    @Column(name = "Username")
     private String username;
-
-    @NotBlank
-    @Size(max = 40)
-    @Email
-    @Column(name = "Email")
-    private String userEmail;
-
-    @NotBlank
-    @Size(max = 100)
-    @Column(name = "Password")
+    private String email;
     private String password;
 
-    public User(UserRequest userRequest){
+    public User() {}
 
-        username = userRequest.getUsername();
-
-        userEmail = userRequest.getUserEmail();
-
-        password = userRequest.getPassword();
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -51,15 +35,23 @@ public class User {
         return username;
     }
 
-    public void setUsername(){
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getEmail() {
-        return userEmail;
+    public String getUserEmail() {
+        return email;
     }
 
-    public void setUserEmail(){
-        this.userEmail = userEmail;
+    public void setUserEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
