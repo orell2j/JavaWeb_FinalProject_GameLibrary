@@ -19,18 +19,17 @@ public class ReviewService {
         return review;
     }
 
-    //public Review updateReview(long ReviewId, ReviewRequest reviewRequest){
-        //if (reviewRepository.existsById(ReviewId)){
+    public Review updateReview(long ReviewId, ReviewRequest reviewRequest){
+        if(reviewRepository.existsById(ReviewId)){
+            Review reviewToBeUpdated = new Review(reviewRequest);
+            reviewToBeUpdated.setReviewId(ReviewId);
 
-            //Review reviewToBeUpdated = new Review(reviewRequest);
-            //reviewToBeUpdated.setId(ReviewId);
-            //return reviewRepository.save(reviewToBeUpdated);
-
-        //}
-        //else{
-            //throw new ResourceNotFoundException("Review id not found");
-        //}
-    //}
+            return reviewRepository.save(reviewToBeUpdated);
+        }
+        else{
+            throw new ResourceNotFoundException("REVIEW ID NOT FOUND");
+        }
+    }
 
     public void deleteReview(long ReviewId){
         if(reviewRepository.existsById(ReviewId)){
@@ -40,4 +39,5 @@ public class ReviewService {
             throw new ResourceNotFoundException("Review id not found");
         }
     }
+
 }

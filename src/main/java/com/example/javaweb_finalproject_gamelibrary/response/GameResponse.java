@@ -13,8 +13,6 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 public class GameResponse {
 
-    private long GameId;
-
     private String Title;
 
     private String Publisher;
@@ -24,7 +22,6 @@ public class GameResponse {
     //Game response
     public GameResponse (Game game){
 
-        GameId = game.getGameId();
         Title = game.getTitle();
         Publisher = game.getPublisher();
         Description = game.getDescription();

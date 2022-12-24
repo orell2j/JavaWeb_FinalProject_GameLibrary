@@ -18,7 +18,7 @@ import java.net.ContentHandler;
 @NoArgsConstructor
 public class Review {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ReviewId;
+    private long id;
 
     @Column(name = "Comments")
     private String Comment;

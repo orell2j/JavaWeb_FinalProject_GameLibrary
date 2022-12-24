@@ -8,10 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class ReviewRequest {
+
     @NotBlank
     private String Comment;
 
     @NotBlank
     private int Rating;
+    
 }
