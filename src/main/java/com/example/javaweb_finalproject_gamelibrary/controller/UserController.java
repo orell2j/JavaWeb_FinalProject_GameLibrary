@@ -1,5 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.controller;
 
+
 import com.example.javaweb_finalproject_gamelibrary.entity.User;
 import com.example.javaweb_finalproject_gamelibrary.request.UserRequest;
 import com.example.javaweb_finalproject_gamelibrary.response.UserResponse;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin("")
+@CrossOrigin("*")
 @RequestMapping("/api/Users/")
 @RequiredArgsConstructor
 
