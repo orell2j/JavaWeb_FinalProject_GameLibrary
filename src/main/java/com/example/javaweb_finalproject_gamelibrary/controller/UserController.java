@@ -16,7 +16,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/Users/")
+@RequestMapping("/api/")
 @RequiredArgsConstructor
 
 public class UserController {
@@ -48,14 +48,14 @@ public class UserController {
 
 
     //get user by userId
-    @GetMapping("/{userId}")
+    @GetMapping("/Users/{userId}")
     public User getUserById(@PathVariable long userId){
         return userService.getUserById(userId);
     }
 
 
     //update user by userId
-    @PutMapping("/{userId}")
+    @PutMapping("/Users/{userId}")
     public UserResponse updateUser(@PathVariable long userId, @Valid @RequestBody UserRequest userRequest){
         User userToBeUpdated = userService.updateUser(userId, userRequest);
         return new UserResponse(userToBeUpdated);
@@ -63,7 +63,7 @@ public class UserController {
 
 
     //delete user by userId
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/Users/{userId}")
     public void deleteUser(@PathVariable long userId){
 
         userService.deleteUser(userId);
