@@ -38,7 +38,6 @@ public class Review {
         comment = reviewRequest.getComment();
         rating = reviewRequest.getRating();
         username = reviewRequest.getUsername();
-        id = reviewRequest.getId();
     }
 
 }
