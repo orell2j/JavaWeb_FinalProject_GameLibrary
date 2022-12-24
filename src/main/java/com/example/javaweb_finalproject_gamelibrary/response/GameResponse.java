@@ -19,7 +19,6 @@ public class GameResponse {
 
     private String Description;
 
-    //Game response
     public GameResponse (Game game){
 
         Title = game.getTitle();

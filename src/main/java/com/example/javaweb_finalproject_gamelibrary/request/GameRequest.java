@@ -18,5 +18,4 @@ public class GameRequest {
     @NotBlank
     private String Description;
 
-
 }

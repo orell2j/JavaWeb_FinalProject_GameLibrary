@@ -23,7 +23,6 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/api/Games/")
 @RequiredArgsConstructor
-
 public class GameController {
 
     @Autowired

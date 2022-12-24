@@ -1,5 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.entity;
 
+
 import com.example.javaweb_finalproject_gamelibrary.request.GameRequest;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.entity;
 
+
 import com.example.javaweb_finalproject_gamelibrary.request.ReviewRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class Review {
         comment = reviewRequest.getComment();
         rating = reviewRequest.getRating();
         username = reviewRequest.getUsername();
+        id = reviewRequest.getId();
     }
 
 }
