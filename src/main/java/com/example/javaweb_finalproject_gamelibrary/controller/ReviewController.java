@@ -7,12 +7,15 @@ import com.example.javaweb_finalproject_gamelibrary.service.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+/*
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/reviews")
-public class ReviewController {
 
+
+ */
+public class ReviewController {
+    /*
     @Autowired
     private ReviewService reviewService;
 
@@ -30,4 +33,6 @@ public class ReviewController {
     public void deleteCourse(@PathVariable long Id){
         reviewService.deleteReview(Id);
     }
+
+     */
 }
