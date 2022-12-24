@@ -14,15 +14,15 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Review getReview(long ReviewId){
-        Review review = reviewRepository.findById(ReviewId).orElseThrow(()->new ResourceNotFoundException("REVIEW ID NOT FOUND"));
+    public Review getReview(long reviewId){
+        Review review = reviewRepository.findById(reviewId).orElseThrow(()->new ResourceNotFoundException("REVIEW ID NOT FOUND"));
         return review;
     }
 
-    public Review updateReview(long ReviewId, ReviewRequest reviewRequest){
-        if(reviewRepository.existsById(ReviewId)){
+    public Review updateReview(long reviewId, ReviewRequest reviewRequest){
+        if(reviewRepository.existsById(reviewId)){
             Review reviewToBeUpdated = new Review(reviewRequest);
-            reviewToBeUpdated.setId(ReviewId);
+            reviewToBeUpdated.setId(reviewId);
 
             return reviewRepository.save(reviewToBeUpdated);
         }
@@ -31,9 +31,9 @@ public class ReviewService {
         }
     }
 
-    public void deleteReview(long ReviewId){
-        if(reviewRepository.existsById(ReviewId)){
-            reviewRepository.deleteById(ReviewId);
+    public void deleteReview(long reviewId){
+        if(reviewRepository.existsById(reviewId)){
+            reviewRepository.deleteById(reviewId);
         }
         else{
             throw new ResourceNotFoundException("REVIEW ID NOT FOUND");

@@ -53,9 +53,11 @@ public class GameService {
     }
 
     public Game updateGame(long gameId, Game gameRequest){
-        gameRepository.findById(gameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
-        Game gameToUpdate = new Game(gameRequest);
-        gameToUpdate.setId(gameId);
+        Game gameToUpdate = gameRepository.findById(gameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
+
+        gameToUpdate.setTitle(gameRequest.getTitle());
+        gameToUpdate.setPublisher(gameToUpdate.getPublisher());
+        gameToUpdate.setDescription(gameToUpdate.getDescription());
 
         return gameRepository.save(gameToUpdate);
     }

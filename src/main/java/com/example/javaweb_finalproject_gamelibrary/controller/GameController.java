@@ -3,13 +3,13 @@ package com.example.javaweb_finalproject_gamelibrary.controller;
 
 import com.example.javaweb_finalproject_gamelibrary.entity.Game;
 import com.example.javaweb_finalproject_gamelibrary.entity.Review;
+import com.example.javaweb_finalproject_gamelibrary.exception.ResourceNotFoundException;
 import com.example.javaweb_finalproject_gamelibrary.request.GameRequest;
 import com.example.javaweb_finalproject_gamelibrary.request.ReviewRequest;
 import com.example.javaweb_finalproject_gamelibrary.response.GameResponse;
 import com.example.javaweb_finalproject_gamelibrary.response.ReviewResponse;
-import com.example.javaweb_finalproject_gamelibrary.service.GameSevice;
-import com.example.javaweb_finalproject_gamelibrary.service.ReviewService;
 import com.example.javaweb_finalproject_gamelibrary.repository.GameRepository;
+import com.example.javaweb_finalproject_gamelibrary.service.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,22 +27,23 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    GameSevice gameService;
+    GameService gameService;
 
     @Autowired
     GameRepository gameRepository;
 
-    @PostMapping("/{GameId}/reviews")
-    public ReviewResponse addReview(@PathVariable long GameId,
+
+    @PostMapping("/{gameId}/reviews")
+    public ReviewResponse addReview(@PathVariable long gameId,
                                     @Valid @RequestBody ReviewRequest reviewRequest){
 
-        return new ReviewResponse(gameService.addReview(GameId, reviewRequest));
+        return new ReviewResponse(gameService.addReview(gameId, reviewRequest));
 
     }
 
-    @GetMapping("/{GameId}/reviews")
-    public List<ReviewResponse> getAllReviews(@PathVariable long GameId){
-        List<Review> reviews = gameService.getAllReviews(GameId);
+    @GetMapping("/{gameId}/reviews")
+    public List<ReviewResponse> getAllReviews(@PathVariable long gameId){
+        List<Review> reviews = gameService.getAllReviews(gameId);
         List<ReviewResponse> reviewResponses = new ArrayList<>();
         for (int i=0; i < reviews.size(); i++){
             reviewResponses.add(new ReviewResponse(reviews.get(i)));
@@ -50,10 +51,12 @@ public class GameController {
         return reviewResponses;
     }
 
+
+
     //get all games
     @GetMapping
-    public List<GameResponse> getAllGames(@PathVariable long GameId){
-        List<Game> games = gameService.getAllGames(GameId);
+    public List<GameResponse> getAllGames(@PathVariable long gameId){
+        List<Game> games = gameService.getAllGames(gameId);
         List<GameResponse> gameResponses = new ArrayList<>();
         games.forEach(game -> {
             GameResponse gameResponse = new GameResponse(game);
@@ -62,26 +65,21 @@ public class GameController {
         return gameResponses;
     }
 
-/*
-    @GetMapping
-    public List<GameResponse> getAllGames(@RequestParam(required = false) String Title){
-
-        List<Game> games = gameService.getAllGames(Title);
-
-        List<GameResponse> gamesResponse = new ArrayList<>();
-        games.forEach(game -> {
-            gamesResponse.add(new GameResponse(game));
+    @GetMapping("/title/{title}")
+    public List<GameResponse> getGamesByTitle(@PathVariable String title){
+        List<Game> games = gameService.getGamesByTitle(title);
+        List<GameResponse> gameResponses = new ArrayList<>();
+        games.forEach(game->{
+            GameResponse gameResponse = new GameResponse(game);
+            gameResponses.add(gameResponse);
         });
-
-        return gamesResponse;
-
+        return gameResponses;
     }
 
- */
+    @GetMapping("/{gameId}")
+    public Game getGameById(@PathVariable long gameId){
 
-    @GetMapping("/{GameId}")
-    public Game getGameById(@PathVariable long GameId){
-        return gameService.getGameById(GameId);
+        return gameService.getGameById(gameId);
     }
 
     //add game post request
@@ -92,15 +90,29 @@ public class GameController {
         return new GameResponse(savedGame);
     }
 
-    @PutMapping("/{GameId}")
-    public GameResponse updateGame(@PathVariable long GameId, @Valid @RequestBody GameRequest gameRequest){
-        Game gameToBeUpdated = gameService.updateGame(GameId, gameRequest);
-        return new GameResponse(gameToBeUpdated);
+    @PutMapping("/{gameId}")
+    public GameResponse updateGame(@PathVariable long gameId, @Valid @RequestBody GameRequest gameRequest){
+        //Validate that the game exists
+
+        Game gameToUpdate = gameService.getGameById(gameId);
+        if (gameToUpdate == null){
+            throw new ResourceNotFoundException("Game with ID " + gameId + " not found");
+        }
+
+        //Update the game with new data from the request
+        gameToUpdate.setTitle(gameRequest.getTitle());
+        gameToUpdate.setPublisher(gameRequest.getPublisher());
+        gameToUpdate.setDescription(gameRequest.getDescription());
+
+        Game updatedGame = gameService.updateGame(gameId, gameToUpdate);
+
+        // Return the updated game as a response
+        return new GameResponse(updatedGame);
     }
 
-    @DeleteMapping("/{GameId}")
-    public void deleteGame (@PathVariable long GameId){
-        gameService.deleteGame(GameId);
+    @DeleteMapping("/{gameId}")
+    public void deleteGame (@PathVariable long gameId){
+        gameService.deleteGame(gameId);
     }
 
 }

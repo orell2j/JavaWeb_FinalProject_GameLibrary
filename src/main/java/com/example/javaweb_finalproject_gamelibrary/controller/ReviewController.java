@@ -1,38 +1,48 @@
 package com.example.javaweb_finalproject_gamelibrary.controller;
 
-
+import com.example.javaweb_finalproject_gamelibrary.entity.Game;
+import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 import com.example.javaweb_finalproject_gamelibrary.request.ReviewRequest;
 import com.example.javaweb_finalproject_gamelibrary.response.ReviewResponse;
+import com.example.javaweb_finalproject_gamelibrary.service.GameService;
 import com.example.javaweb_finalproject_gamelibrary.service.ReviewService;
+import com.example.javaweb_finalproject_gamelibrary.repository.GameRepository;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-/*
+
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/reviews")
-
-
- */
+@RequestMapping("/api/games/{gameId}/reviews")
+@RequiredArgsConstructor
 public class ReviewController {
-    /*
+
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/{Id}")
-    public ReviewResponse getReview(@PathVariable long Id){
-        return new ReviewResponse(reviewService.getReview(Id));
+    @Autowired
+    private GameRepository gameRepository;
+
+    @Autowired
+    private GameService gameService;
+
+    @GetMapping("/{reviewId}")
+    public ReviewResponse getReview(@PathVariable long reviewId){
+        Review review = reviewService.getReview(reviewId);
+        return new ReviewResponse(review);
     }
 
-    @GetMapping("/{Id}")
-    public ReviewResponse updateReview(@PathVariable long Id, @Valid @RequestBody ReviewRequest reviewRequest){
-        return new ReviewResponse(reviewService.updateReview(Id, reviewRequest));
+    @PutMapping("/{reviewId}")
+    public ReviewResponse updateReview(@PathVariable long reviewId, @Valid @RequestBody ReviewRequest reviewRequest){
+        Review reviewToBeUpdated = reviewService.updateReview(reviewId, reviewRequest);
+        return new ReviewResponse(reviewToBeUpdated);
     }
 
-    @DeleteMapping("/{Id}")
-    public void deleteCourse(@PathVariable long Id){
-        reviewService.deleteReview(Id);
+    @DeleteMapping("/{reviewId}")
+    public void deleteReview(@PathVariable long reviewId){
+        reviewService.deleteReview(reviewId);
     }
 
-     */
+
 }

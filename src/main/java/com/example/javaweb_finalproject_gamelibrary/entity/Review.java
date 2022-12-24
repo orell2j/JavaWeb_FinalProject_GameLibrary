@@ -30,7 +30,7 @@ public class Review {
 
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "GameId")
+    @JoinColumn(name = "GameId", nullable = false)
     private Game game;
 
     public Review (ReviewRequest reviewRequest){

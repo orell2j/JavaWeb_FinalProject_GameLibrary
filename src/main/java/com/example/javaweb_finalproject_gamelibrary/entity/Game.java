@@ -38,4 +38,5 @@ public class Game {
 
         description = gameRequest.getDescription();
     }
+
 }
