@@ -1,5 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.repository;
 
+
 import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 import jakarta.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
