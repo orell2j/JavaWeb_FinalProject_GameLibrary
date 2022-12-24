@@ -1,5 +1,6 @@
 package com.example.javaweb_finalproject_gamelibrary.response;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +13,18 @@ import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 @NoArgsConstructor
 public class ReviewResponse {
 
-    private String Comment;
+    private String comment;
 
-    private int Rating;
+    private int rating;
+
+    private String username;
 
     private GameResponse game;
 
     public ReviewResponse(Review review) {
-        Comment = review.getComment();
-        Rating = review.getRating();
+        comment = review.getComment();
+        rating = review.getRating();
+        username = review.getUsername();
         game = new GameResponse(review.getGame());
     }
 }

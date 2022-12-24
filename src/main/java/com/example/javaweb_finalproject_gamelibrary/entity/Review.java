@@ -21,10 +21,12 @@ public class Review {
     private long id;
 
     @Column(name = "Comments")
-    private String Comment;
+    private String comment;
 
     @Column(name = "Rating")
-    private int Rating;
+    private int rating;
+
+    private String username;
 
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -32,8 +34,9 @@ public class Review {
     private Game game;
 
     public Review (ReviewRequest reviewRequest){
-        Comment = reviewRequest.getComment();
-        Rating = reviewRequest.getRating();
+        comment = reviewRequest.getComment();
+        rating = reviewRequest.getRating();
+        username = reviewRequest.getUsername();
     }
 
 }
