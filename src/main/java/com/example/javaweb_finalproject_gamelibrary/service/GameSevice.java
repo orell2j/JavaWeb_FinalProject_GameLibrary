@@ -21,7 +21,7 @@ public class GameSevice {
     ReviewRepository reviewRepository;
 
     public Review addReview(long id, ReviewRequest reviewRequest){
-        Game game = gameRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Game id not found"));
+        Game game = gameRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("GAME ID NOT FOUND"));
         Review reviewToBeSaved = new Review(reviewRequest);
         reviewToBeSaved.setGame(game);
         return reviewRepository.save(reviewToBeSaved);

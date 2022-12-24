@@ -15,7 +15,7 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
 
     public Review getReview(long ReviewId){
-        Review review = reviewRepository.findById(ReviewId).orElseThrow(()->new ResourceNotFoundException("Review id not found"));
+        Review review = reviewRepository.findById(ReviewId).orElseThrow(()->new ResourceNotFoundException("REVIEW ID NOT FOUND"));
         return review;
     }
 
@@ -36,7 +36,7 @@ public class ReviewService {
             reviewRepository.deleteById(ReviewId);
         }
         else{
-            throw new ResourceNotFoundException("Review id not found");
+            throw new ResourceNotFoundException("REVIEW ID NOT FOUND");
         }
     }
 
