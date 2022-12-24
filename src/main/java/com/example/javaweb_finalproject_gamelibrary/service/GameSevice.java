@@ -32,11 +32,9 @@ public class GameSevice {
     }
 
     //get all game Records
-    //public List<Game> getAllGames(long GameId){return (List<Game>) gameRepository.findAll();}
+    public List<Game> getAllGames(long GameId){return (List<Game>) gameRepository.findAll();}
 
-    public List<Game> getAllGames(String title){
-        return (List<Game>) gameRepository.findAll();
-    }
+    //public List<Game> getAllGames(String title){return (List<Game>) gameRepository.findAll();}
 
     public Game getGameById(long GameId){
 
@@ -58,14 +56,14 @@ public class GameSevice {
     }
 
     public void deleteGame(long GameId){
-    /*
+
         if(gameRepository.existsById(GameId)){
             gameRepository.deleteById(GameId);
         }
         else{
             throw new ResourceNotFoundException("GAME NOT FOUND");
         }
-    */
+
         gameRepository.findById(GameId).orElseThrow(()->new ResourceNotFoundException("GAME ID NOT FOUND"));
         gameRepository.deleteById(GameId);
     }

@@ -12,8 +12,6 @@ import com.example.javaweb_finalproject_gamelibrary.entity.Review;
 @NoArgsConstructor
 public class ReviewResponse {
 
-    private long ReviewId;
-
     private String Comment;
 
     private int Rating;
@@ -21,7 +19,6 @@ public class ReviewResponse {
     private GameResponse game;
 
     public ReviewResponse(Review review) {
-        ReviewId = review.getReviewId();
         Comment = review.getComment();
         Rating = review.getRating();
         game = new GameResponse(review.getGame());

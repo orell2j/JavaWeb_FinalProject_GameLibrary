@@ -22,7 +22,7 @@ public class ReviewService {
     public Review updateReview(long ReviewId, ReviewRequest reviewRequest){
         if(reviewRepository.existsById(ReviewId)){
             Review reviewToBeUpdated = new Review(reviewRequest);
-            reviewToBeUpdated.setReviewId(ReviewId);
+            reviewToBeUpdated.setId(ReviewId);
 
             return reviewRepository.save(reviewToBeUpdated);
         }

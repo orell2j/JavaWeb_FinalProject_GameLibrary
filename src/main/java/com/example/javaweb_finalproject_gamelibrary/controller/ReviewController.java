@@ -16,18 +16,18 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/{ReviewId}")
-    public ReviewResponse getReview(@PathVariable long ReviewId){
-        return new ReviewResponse(reviewService.getReview(ReviewId));
+    @GetMapping("/{Id}")
+    public ReviewResponse getReview(@PathVariable long Id){
+        return new ReviewResponse(reviewService.getReview(Id));
     }
 
-    @GetMapping("/{ReviewId}")
-    public ReviewResponse updateReview(@PathVariable long ReviewId, @Valid @RequestBody ReviewRequest reviewRequest){
-        return new ReviewResponse(reviewService.updateReview(ReviewId, reviewRequest));
+    @GetMapping("/{Id}")
+    public ReviewResponse updateReview(@PathVariable long Id, @Valid @RequestBody ReviewRequest reviewRequest){
+        return new ReviewResponse(reviewService.updateReview(Id, reviewRequest));
     }
 
-    @DeleteMapping("/{ReviewId}")
-    public void deleteCourse(@PathVariable long ReviewId){
-        reviewService.deleteReview(ReviewId);
+    @DeleteMapping("/{Id}")
+    public void deleteCourse(@PathVariable long Id){
+        reviewService.deleteReview(Id);
     }
 }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/api/Games/")
 @RequiredArgsConstructor
 
@@ -31,7 +31,7 @@ public class GameController {
     @Autowired
     GameRepository gameRepository;
 
-    @PostMapping("/{GameId}/Reviews")
+    @PostMapping("/{GameId}/reviews")
     public ReviewResponse addReview(@PathVariable long GameId,
                                     @Valid @RequestBody ReviewRequest reviewRequest){
 
@@ -39,7 +39,7 @@ public class GameController {
 
     }
 
-    @GetMapping("/{GameId}/Reviews")
+    @GetMapping("/{GameId}/reviews")
     public List<ReviewResponse> getAllReviews(@PathVariable long GameId){
         List<Review> reviews = gameService.getAllReviews(GameId);
         List<ReviewResponse> reviewResponses = new ArrayList<>();
@@ -50,7 +50,6 @@ public class GameController {
     }
 
     //get all games
-    /*
     @GetMapping
     public List<GameResponse> getAllGames(@PathVariable long GameId){
         List<Game> games = gameService.getAllGames(GameId);
@@ -61,8 +60,8 @@ public class GameController {
         });
         return gameResponses;
     }
-    */
 
+/*
     @GetMapping
     public List<GameResponse> getAllGames(@RequestParam(required = false) String Title){
 
@@ -76,6 +75,8 @@ public class GameController {
         return gamesResponse;
 
     }
+
+ */
 
     @GetMapping("/{GameId}")
     public Game getGameById(@PathVariable long GameId){
