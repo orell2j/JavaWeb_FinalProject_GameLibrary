@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/games/{gameId}/reviews")
@@ -28,17 +29,20 @@ public class ReviewController {
     @Autowired
     private GameService gameService;
 
+
     @GetMapping("/{reviewId}")
     public ReviewResponse getReview(@PathVariable long reviewId){
         Review review = reviewService.getReview(reviewId);
         return new ReviewResponse(review);
     }
 
+
     @PutMapping("/{reviewId}")
     public ReviewResponse updateReview(@PathVariable long reviewId, @Valid @RequestBody ReviewRequest reviewRequest){
         Review reviewToBeUpdated = reviewService.updateReview(reviewId, reviewRequest);
         return new ReviewResponse(reviewToBeUpdated);
     }
+
 
     @DeleteMapping("/{reviewId}")
     public void deleteReview(@PathVariable long reviewId){

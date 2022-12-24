@@ -29,15 +29,18 @@ public class Review {
 
     private String username;
 
+
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "GameId", nullable = false)
     private Game game;
 
+
     public Review (ReviewRequest reviewRequest){
         comment = reviewRequest.getComment();
         rating = reviewRequest.getRating();
         username = reviewRequest.getUsername();
+
     }
 
 }

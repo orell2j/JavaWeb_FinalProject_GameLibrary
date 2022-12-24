@@ -21,5 +21,7 @@ public class UserResponse {
         id = user.getId();
         username = user.getUsername();
         email = user.getUserEmail();
+
     }
+
 }

@@ -24,6 +24,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     //register a new user
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,6 +32,7 @@ public class UserController {
         User savedUser = userService.addUser(userRequest);
         return new UserResponse(savedUser);
     }
+
 
     //get all users
     @GetMapping
@@ -44,11 +46,13 @@ public class UserController {
         return userResponses;
     }
 
+
     //get user by userId
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable long userId){
         return userService.getUserById(userId);
     }
+
 
     //update user by userId
     @PutMapping("/{userId}")
@@ -57,9 +61,13 @@ public class UserController {
         return new UserResponse(userToBeUpdated);
     }
 
+
     //delete user by userId
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable long userId){
+
         userService.deleteUser(userId);
+
     }
+
 }

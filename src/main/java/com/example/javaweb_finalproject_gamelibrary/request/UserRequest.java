@@ -25,4 +25,6 @@ public class UserRequest {
     @NotBlank
     @Size(min = 6, max = 100)
     private String password;
+
+
 }
