@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
 @CrossOrigin("*")
+@RestController
 @RequestMapping("/api/Users/")
 @RequiredArgsConstructor
 
@@ -35,7 +35,7 @@ public class UserController {
 
 
     //get all users
-    @GetMapping
+    @GetMapping("/Users")
     public List<UserResponse> getAllUsers(){
         List<User> users = userService.getAllUsers();
         List<UserResponse> userResponses = new ArrayList<>();

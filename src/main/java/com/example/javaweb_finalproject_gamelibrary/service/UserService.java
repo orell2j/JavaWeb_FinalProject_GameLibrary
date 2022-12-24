@@ -35,7 +35,6 @@ public class UserService {
         User userToBeUpdated = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("USER ID NOT FOUND"));
         userToBeUpdated.setUsername(userRequest.getUsername());
         userToBeUpdated.setUserEmail(userRequest.getUserEmail());
-        userToBeUpdated.setPassword(userRequest.getPassword());
         return userRepository.save(userToBeUpdated);
     }
 

@@ -16,15 +16,12 @@ public class User {
     @Column(name = "Email", nullable = false)
     private String email;
 
-    @Column(name = "Password", nullable = false)
-    private String password;
 
     public User() {}
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.password = password;
     }
 
     public long getId() {
@@ -63,15 +60,4 @@ public class User {
 
     }
 
-    public String getPassword() {
-
-        return password;
-
-    }
-
-    public void setPassword(String password) {
-
-        this.password = password;
-
-    }
 }
