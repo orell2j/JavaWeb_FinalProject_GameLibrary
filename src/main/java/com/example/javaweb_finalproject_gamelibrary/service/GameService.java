@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GameSevice {
+public class GameService {
     @Autowired
     GameRepository gameRepository;
 
@@ -47,25 +47,29 @@ public class GameSevice {
         return gameRepository.save(game);
     }
 
-    public Game updateGame(long GameId, GameRequest gameRequest){
-        gameRepository.findById(GameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
+    public List<Game> getGamesByTitle(String title){
+        return gameRepository.findAllByTitle(title);
+    }
+
+    public Game updateGame(long gameId, Game gameRequest){
+        gameRepository.findById(gameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
         Game gameToUpdate = new Game(gameRequest);
-        gameToUpdate.setId(GameId);
+        gameToUpdate.setId(gameId);
 
         return gameRepository.save(gameToUpdate);
     }
 
-    public void deleteGame(long GameId){
+    public void deleteGame(long gameId){
 
-        if(gameRepository.existsById(GameId)){
-            gameRepository.deleteById(GameId);
+        if(gameRepository.existsById(gameId)){
+            gameRepository.deleteById(gameId);
         }
         else{
             throw new ResourceNotFoundException("GAME NOT FOUND");
         }
 
-        gameRepository.findById(GameId).orElseThrow(()->new ResourceNotFoundException("GAME ID NOT FOUND"));
-        gameRepository.deleteById(GameId);
+        gameRepository.findById(gameId).orElseThrow(()->new ResourceNotFoundException("GAME ID NOT FOUND"));
+        gameRepository.deleteById(gameId);
     }
 
 }
