@@ -6,11 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class GameRequest {
-
-    @NotBlank
-    private long GameId;
 
     @NotBlank
     private String Title;

@@ -31,10 +31,11 @@ public class GameSevice {
         return reviewRepository.findAllByGameId(id);
     }
 
-    public List<Game> getAllGames(long GameId){
+    //get all game Records
+    //public List<Game> getAllGames(long GameId){return (List<Game>) gameRepository.findAll();}
 
+    public List<Game> getAllGames(String title){
         return (List<Game>) gameRepository.findAll();
-
     }
 
     public Game getGameById(long GameId){
@@ -42,6 +43,7 @@ public class GameSevice {
         return gameRepository.findById(GameId).orElse(null);
     }
 
+    //add game method that takes the request and use JPA to save method to save Game object to the table
     public Game addGame(GameRequest gameRequest){
         Game game = new Game(gameRequest);
         return gameRepository.save(game);
@@ -50,18 +52,22 @@ public class GameSevice {
     public Game updateGame(long GameId, GameRequest gameRequest){
         gameRepository.findById(GameId).orElseThrow( ()->new ResourceNotFoundException("ID IS NOT FOUND"));
         Game gameToUpdate = new Game(gameRequest);
-        gameToUpdate.setGameId(GameId);
+        gameToUpdate.setId(GameId);
 
         return gameRepository.save(gameToUpdate);
     }
 
     public void deleteGame(long GameId){
+    /*
         if(gameRepository.existsById(GameId)){
             gameRepository.deleteById(GameId);
         }
         else{
             throw new ResourceNotFoundException("GAME NOT FOUND");
         }
+    */
+        gameRepository.findById(GameId).orElseThrow(()->new ResourceNotFoundException("GAME ID NOT FOUND"));
+        gameRepository.deleteById(GameId);
     }
 
 }

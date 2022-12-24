@@ -21,7 +21,7 @@ public class GameResponse {
 
     private String Description;
 
-    //entity
+    //Game response
     public GameResponse (Game game){
 
         GameId = game.getGameId();

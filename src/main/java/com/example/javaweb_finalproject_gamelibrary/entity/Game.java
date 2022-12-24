@@ -8,38 +8,34 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 
-
+//see it in h2 console
 @Entity
 @Table(name = "Games")
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Game {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long GameId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @Column(name = "Title", nullable = false)
-    private String Title;
+    @Column(name = "Title", nullable = false, length = 255)
+    private String title;
 
     @Column(name = "Publisher", nullable = false)
-    private String Publisher;
+    private String publisher;
 
     @Column(name = "Description", nullable = true)
-    private String Description;
+    private String description;
 
 
 
     public Game(GameRequest gameRequest){
 
-        GameId = gameRequest.getGameId();
+        title = gameRequest.getTitle();
 
-        Title = gameRequest.getTitle();
+        publisher = gameRequest.getPublisher();
 
-        Publisher = gameRequest.getPublisher();
-
-        Description = gameRequest.getDescription();
+        description = gameRequest.getDescription();
     }
 }

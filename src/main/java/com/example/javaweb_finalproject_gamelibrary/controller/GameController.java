@@ -8,6 +8,7 @@ import com.example.javaweb_finalproject_gamelibrary.response.GameResponse;
 import com.example.javaweb_finalproject_gamelibrary.response.ReviewResponse;
 import com.example.javaweb_finalproject_gamelibrary.service.GameSevice;
 import com.example.javaweb_finalproject_gamelibrary.service.ReviewService;
+import com.example.javaweb_finalproject_gamelibrary.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class GameController {
     @Autowired
     GameSevice gameService;
 
+    @Autowired
+    GameRepository gameRepository;
+
     @PostMapping("/{GameId}/Reviews")
     public ReviewResponse addReview(@PathVariable long GameId,
                                     @Valid @RequestBody ReviewRequest reviewRequest){
@@ -45,6 +49,8 @@ public class GameController {
         return reviewResponses;
     }
 
+    //get all games
+    /*
     @GetMapping
     public List<GameResponse> getAllGames(@PathVariable long GameId){
         List<Game> games = gameService.getAllGames(GameId);
@@ -55,12 +61,28 @@ public class GameController {
         });
         return gameResponses;
     }
+    */
+
+    @GetMapping
+    public List<GameResponse> getAllGames(@RequestParam(required = false) String Title){
+
+        List<Game> games = gameService.getAllGames(Title);
+
+        List<GameResponse> gamesResponse = new ArrayList<>();
+        games.forEach(game -> {
+            gamesResponse.add(new GameResponse(game));
+        });
+
+        return gamesResponse;
+
+    }
 
     @GetMapping("/{GameId}")
     public Game getGameById(@PathVariable long GameId){
         return gameService.getGameById(GameId);
     }
 
+    //add game post request
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public GameResponse addGame(@Valid @RequestBody GameRequest gameRequest){
@@ -70,8 +92,8 @@ public class GameController {
 
     @PutMapping("/{GameId}")
     public GameResponse updateGame(@PathVariable long GameId, @Valid @RequestBody GameRequest gameRequest){
-        Game updateGame = gameService.updateGame(GameId, gameRequest);
-        return new GameResponse(updateGame);
+        Game gameToBeUpdated = gameService.updateGame(GameId, gameRequest);
+        return new GameResponse(gameToBeUpdated);
     }
 
     @DeleteMapping("/{GameId}")
