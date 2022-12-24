@@ -73,5 +73,7 @@ public class GameService {
 
         gameRepository.findById(gameId).orElseThrow(()->new ResourceNotFoundException("GAME ID NOT FOUND"));
         gameRepository.deleteById(gameId);
+
     }
+
 }

@@ -40,6 +40,7 @@ public class GameController {
 
     }
 
+
     @GetMapping("/{gameId}/reviews")
     public List<ReviewResponse> getAllReviews(@PathVariable long gameId){
         List<Review> reviews = gameService.getAllReviews(gameId);
@@ -64,6 +65,7 @@ public class GameController {
         return gameResponses;
     }
 
+
     @GetMapping("/title/{title}")
     public List<GameResponse> getGamesByTitle(@PathVariable String title){
         List<Game> games = gameService.getGamesByTitle(title);
@@ -75,11 +77,13 @@ public class GameController {
         return gameResponses;
     }
 
+
     @GetMapping("/{gameId}")
     public Game getGameById(@PathVariable long gameId){
 
         return gameService.getGameById(gameId);
     }
+
 
     //add game post request
     @PostMapping()
@@ -88,6 +92,7 @@ public class GameController {
         Game savedGame = gameService.addGame(gameRequest);
         return new GameResponse(savedGame);
     }
+
 
     @PutMapping("/{gameId}")
     public GameResponse updateGame(@PathVariable long gameId, @Valid @RequestBody GameRequest gameRequest){
@@ -109,9 +114,11 @@ public class GameController {
         return new GameResponse(updatedGame);
     }
 
+
     @DeleteMapping("/{gameId}")
     public void deleteGame (@PathVariable long gameId){
         gameService.deleteGame(gameId);
     }
+
 
 }

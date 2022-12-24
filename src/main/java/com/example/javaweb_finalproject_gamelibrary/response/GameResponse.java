@@ -24,5 +24,7 @@ public class GameResponse {
         Title = game.getTitle();
         Publisher = game.getPublisher();
         Description = game.getDescription();
+
     }
+
 }

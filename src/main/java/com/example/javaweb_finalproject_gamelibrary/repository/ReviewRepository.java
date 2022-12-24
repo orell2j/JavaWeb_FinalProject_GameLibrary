@@ -16,4 +16,5 @@ public interface ReviewRepository extends CrudRepository<Review, Long>{
 
     @Transactional
     void deleteAllById(long id);
+
 }

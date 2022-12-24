@@ -38,6 +38,7 @@ public class Game {
         publisher = gameRequest.getPublisher();
 
         description = gameRequest.getDescription();
+
     }
 
 }

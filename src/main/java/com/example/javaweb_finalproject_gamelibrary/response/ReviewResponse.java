@@ -26,5 +26,7 @@ public class ReviewResponse {
         rating = review.getRating();
         username = review.getUsername();
         game = new GameResponse(review.getGame());
+
     }
+
 }
