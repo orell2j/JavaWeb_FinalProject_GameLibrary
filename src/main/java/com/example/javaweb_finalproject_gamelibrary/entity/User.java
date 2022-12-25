@@ -37,9 +37,18 @@ public class User {
     public User (UserRequest userRequest){
         username = userRequest.getUsername();
         email = userRequest.getUserEmail();
+
     }
 
     public User() {
 
+    }
+
+    public String getUserEmail() {
+        return email;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.email = email;
     }
 }

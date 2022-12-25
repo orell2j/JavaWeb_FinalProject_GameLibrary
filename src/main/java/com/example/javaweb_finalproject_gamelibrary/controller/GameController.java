@@ -40,7 +40,7 @@ public class GameController {
 
     }
 
-    @GetMapping
+    @GetMapping("{userId}/Games")
     public List<Game> getGamesByUserId(@PathVariable long userId) {
         return gameService.getGamesByUserId(userId);
     }
