@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class GameController {
 
@@ -32,7 +32,7 @@ public class GameController {
     GameRepository gameRepository;
 
 
-    @PostMapping("/Games/{gameId}/reviews")
+    @PostMapping("/{gameId}/reviews")
     public ReviewResponse addReview(@PathVariable long gameId,
                                     @Valid @RequestBody ReviewRequest reviewRequest){
 
@@ -41,7 +41,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/Games/{gameId}/reviews")
+    @GetMapping("/{gameId}/reviews")
     public List<ReviewResponse> getAllReviews(@PathVariable long gameId){
         List<Review> reviews = gameService.getAllReviews(gameId);
         List<ReviewResponse> reviewResponses = new ArrayList<>();
@@ -66,7 +66,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/Games/title/{title}")
+    @GetMapping("/title/{title}")
     public List<GameResponse> getGamesByTitle(@PathVariable String title){
         List<Game> games = gameService.getGamesByTitle(title);
         List<GameResponse> gameResponses = new ArrayList<>();
@@ -78,7 +78,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/Games/{gameId}")
+    @GetMapping("/{gameId}")
     public Game getGameById(@PathVariable long gameId){
 
         return gameService.getGameById(gameId);
@@ -94,7 +94,7 @@ public class GameController {
     }
 
 
-    @PutMapping("/Games/{gameId}")
+    @PutMapping("/{gameId}")
     public GameResponse updateGame(@PathVariable long gameId, @Valid @RequestBody GameRequest gameRequest){
         //Validate that the game exists
 
@@ -115,7 +115,7 @@ public class GameController {
     }
 
 
-    @DeleteMapping("/Games/{gameId}")
+    @DeleteMapping("/{gameId}")
     public void deleteGame (@PathVariable long gameId){
         gameService.deleteGame(gameId);
     }

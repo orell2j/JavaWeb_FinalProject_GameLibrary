@@ -25,6 +25,7 @@ public class UserController {
     UserService userService;
 
 
+
     //register a new user
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
