@@ -40,11 +40,6 @@ public class GameController {
 
     }
 
-    @GetMapping("{userId}/Games")
-    public List<Game> getGamesByUserId(@PathVariable long userId) {
-        return gameService.getGamesByUserId(userId);
-    }
-
     @GetMapping("/{gameId}/reviews")
     public List<ReviewResponse> getAllReviews(@PathVariable long gameId){
         List<Review> reviews = gameService.getAllReviews(gameId);

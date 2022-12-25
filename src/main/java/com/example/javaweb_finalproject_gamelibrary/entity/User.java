@@ -25,9 +25,6 @@ public class User {
     private String email;
 
 
-    @OneToMany(mappedBy = "user")
-    private List<Game> games;
-
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;

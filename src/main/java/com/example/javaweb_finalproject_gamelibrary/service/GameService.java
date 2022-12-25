@@ -76,7 +76,4 @@ public class GameService {
 
     }
 
-    public List<Game> getGamesByUserId(long userId) {
-        return gameRepository.getGamesByUserId(userId);
-    }
 }

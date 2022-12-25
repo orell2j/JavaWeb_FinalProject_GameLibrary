@@ -1,6 +1,7 @@
 package com.example.javaweb_finalproject_gamelibrary.controller;
 
 
+import com.example.javaweb_finalproject_gamelibrary.entity.Game;
 import com.example.javaweb_finalproject_gamelibrary.entity.User;
 import com.example.javaweb_finalproject_gamelibrary.request.UserRequest;
 import com.example.javaweb_finalproject_gamelibrary.response.UserResponse;

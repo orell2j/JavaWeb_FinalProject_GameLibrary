@@ -29,9 +29,6 @@ public class Game {
     @Column(name = "Description", nullable = true)
     private String description;
 
-    @ManyToOne
-    private User user;
-
     public Game(GameRequest gameRequest){
 
         title = gameRequest.getTitle();
