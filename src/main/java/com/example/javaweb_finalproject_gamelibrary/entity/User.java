@@ -1,10 +1,18 @@
 package com.example.javaweb_finalproject_gamelibrary.entity;
 
 
+import com.example.javaweb_finalproject_gamelibrary.request.UserRequest;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 @Table(name = "Users")
 @Entity
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,47 +25,21 @@ public class User {
     private String email;
 
 
-    public User() {}
+    @OneToMany(mappedBy = "user")
+    private List<Game> games;
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
     }
 
-    public long getId() {
 
-        return id;
-
+    public User (UserRequest userRequest){
+        username = userRequest.getUsername();
+        email = userRequest.getUserEmail();
     }
 
-    public void setId(long id) {
-
-        this.id = id;
+    public User() {
 
     }
-
-    public String getUsername() {
-
-        return username;
-
-    }
-
-    public void setUsername(String username) {
-
-        this.username = username;
-
-    }
-
-    public String getUserEmail() {
-
-        return email;
-
-    }
-
-    public void setUserEmail(String email) {
-
-        this.email = email;
-
-    }
-
 }
