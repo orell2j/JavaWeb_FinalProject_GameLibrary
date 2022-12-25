@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/Games/")
+@RequestMapping("/api/")
 @RequiredArgsConstructor
 public class GameController {
 
@@ -32,7 +32,7 @@ public class GameController {
     GameRepository gameRepository;
 
 
-    @PostMapping("/{gameId}/reviews")
+    @PostMapping("/Games/{gameId}/reviews")
     public ReviewResponse addReview(@PathVariable long gameId,
                                     @Valid @RequestBody ReviewRequest reviewRequest){
 
@@ -41,7 +41,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/{gameId}/reviews")
+    @GetMapping("/Games/{gameId}/reviews")
     public List<ReviewResponse> getAllReviews(@PathVariable long gameId){
         List<Review> reviews = gameService.getAllReviews(gameId);
         List<ReviewResponse> reviewResponses = new ArrayList<>();
@@ -54,7 +54,7 @@ public class GameController {
 
 
     //get all games
-    @GetMapping
+    @GetMapping("/Games")
     public List<GameResponse> getAllGames(@PathVariable long gameId){
         List<Game> games = gameService.getAllGames(gameId);
         List<GameResponse> gameResponses = new ArrayList<>();
@@ -66,7 +66,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/title/{title}")
+    @GetMapping("/Games/title/{title}")
     public List<GameResponse> getGamesByTitle(@PathVariable String title){
         List<Game> games = gameService.getGamesByTitle(title);
         List<GameResponse> gameResponses = new ArrayList<>();
@@ -78,7 +78,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/{gameId}")
+    @GetMapping("/Games/{gameId}")
     public Game getGameById(@PathVariable long gameId){
 
         return gameService.getGameById(gameId);
@@ -94,7 +94,7 @@ public class GameController {
     }
 
 
-    @PutMapping("/{gameId}")
+    @PutMapping("/Games/{gameId}")
     public GameResponse updateGame(@PathVariable long gameId, @Valid @RequestBody GameRequest gameRequest){
         //Validate that the game exists
 
@@ -115,7 +115,7 @@ public class GameController {
     }
 
 
-    @DeleteMapping("/{gameId}")
+    @DeleteMapping("/Games/{gameId}")
     public void deleteGame (@PathVariable long gameId){
         gameService.deleteGame(gameId);
     }
